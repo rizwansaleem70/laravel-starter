@@ -20,3 +20,10 @@ use Illuminate\Validation\ValidationException;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['namespace' => 'API'], function () {
+    Route::post('login', 'Auth\AuthenticateApiController@login');
+    Route::post('register', 'Auth\AuthenticateApiController@register');
+    Route::post('forget_password', 'Auth\ForgetPasswordApiController@forgotPassword');
+    Route::post('reset_password', 'Auth\ForgetPasswordApiController@resetPassword');
+});
